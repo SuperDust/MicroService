@@ -1,0 +1,32 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/{controller}",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/dust/{controller}",
+      "UpstreamHttpMethod": [ "get", "post" ],
+      "ServiceName": "ServiceCommodity",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+        "DownstreamPathTemplate": "/api/{controller}",
+        "DownstreamScheme": "http",
+        "UpstreamPathTemplate": "/dust1/{controller}",
+        "UpstreamHttpMethod": [ "get", "post" ],
+        "ServiceName": "ServiceUser",
+        "LoadBalancerOptions": {
+          "Type": "LeastConnection"
+        }
+    }
+  ],
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Host": "192.168.31.140",
+      "Port": 8500,
+      "ConfigurationKey": "Consul"
+    }
+
+  }
+}
