@@ -49,7 +49,6 @@ namespace ServiceCommodity
                 t.Address = new Uri(configuration["consul:servicesAddr"]);
                 t.Datacenter = configuration["consul:datacenter"];
             }));
-            Console.WriteLine(configuration["port"]);
             var result = client.Agent.ServiceRegister(new AgentServiceRegistration()
             {
                 Address = configuration["ip"],
@@ -61,7 +60,7 @@ namespace ServiceCommodity
                 {
                     HTTP =$"http://{configuration["ip"]}:{configuration["port"]}{configuration["consul:healthCheck"]}",
                     Interval = new TimeSpan(0, 0, 10),
-                    DeregisterCriticalServiceAfter = new TimeSpan(0, 1, 0),
+                    DeregisterCriticalServiceAfter = new TimeSpan(0, 1, 0)
                 }
             }).Result;
         }
